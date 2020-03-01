@@ -187,8 +187,6 @@ var multiply = function(x, y) {
 		}
 	}
 
-
-
 	if (negProduct === false) {
 		return absY > 0 ? absX + multiply(absX, absY - 1) : 0;
 	} else {
@@ -200,6 +198,42 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+	
+	if (y === 0) {
+		return undefined;
+	}
+
+	let absX;
+	let absY;
+	let negQuotient;
+	
+
+	if (x >= 0) {
+		absX = x;
+		if (y > 0) {
+			absY = y;
+			negQuotient = false;
+		} else {
+			absY = -y;
+			negQuotient = true;
+		}
+	} else {
+		absX = -x;
+		if (y > 0) {
+			absY = y;
+			negQuotient = true;
+		} else {
+			absY = -y;
+			negQuotient = false;
+		}
+	}
+
+
+	if (negQuotient === false){
+		return (absX - absY >= 0) ? 1 + divide(absX - absY, absY) : 0;
+	} else {
+		return -((absX - absY >= 0) ? 1 + divide(absX - absY, absY) : 0);
+	}
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
