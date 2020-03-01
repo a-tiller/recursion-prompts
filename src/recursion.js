@@ -163,7 +163,38 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
-	
+	let absX;
+	let absY;
+	let negProduct;
+
+	if (x >= 0) {
+		absX = x;
+		if (y >= 0) {
+			absY = y;
+			negProduct = false;
+		} else {
+			absY = -y;
+			negProduct = true;
+		}
+	} else {
+		absX = -x;
+		if (y >= 0) {
+			absY = y;
+			negProduct = true;
+		} else {
+			absY = -y;
+			negProduct = false;
+		}
+	}
+
+
+
+	if (negProduct === false) {
+		return absY > 0 ? absX + multiply(absX, absY - 1) : 0;
+	} else {
+		return -(absY > 0 ? absX + multiply(absX, absY - 1) : 0);
+	}
+	 	
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
