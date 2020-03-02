@@ -374,6 +374,20 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+	let keyCount = 0;
+
+	for (let oKey in obj){
+		if (oKey === key) {
+			keyCount++;
+		}
+
+		if (obj[oKey] === Object(obj[oKey]) && !(Array.isArray(obj[oKey]))) {
+			keyCount += countKeysInObj(obj[oKey], key);
+		}
+
+	}
+
+	return keyCount;
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -381,6 +395,20 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+	let valueCount = 0;
+
+	for (let oKey in obj){
+		if (obj[oKey] === value) {
+			valueCount++;
+		}
+
+		if (obj[oKey] === Object(obj[oKey]) && !(Array.isArray(obj[oKey]))) {
+			valueCount += countValuesInObj(obj[oKey], value);
+		}
+
+	}
+
+	return valueCount;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
