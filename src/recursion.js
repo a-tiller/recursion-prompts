@@ -349,7 +349,7 @@ var countOccurrence = function(array, value) {
 	if (array.length === 0) {
 		return 0;
 	} else {
-		if (array[0] === value) {
+		if ((array[0] === value) || (Number.isNaN(array[0]) && Number.isNaN(value))) {
 			return countOccurrence(array.slice(1),value) + 1;
 		} else {
 			return countOccurrence(array.slice(1),value);

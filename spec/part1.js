@@ -1121,7 +1121,7 @@
         expect(countOccurrence(['',null,0,'false',false], false)).to.equal(1);
         expect(countOccurrence(['',7,null,0,'0',false], null)).to.equal(1);
         expect(countOccurrence(['',7,null,0,'0',false], '')).to.equal(1);
-        // expect(countOccurrence(['',7,null,0,NaN,'0',false], NaN)).to.equal(1);
+        expect(countOccurrence(['',7,null,0,NaN,'0',false], NaN)).to.equal(1);
       });
 
       it('should use recursion by calling self', function() {
