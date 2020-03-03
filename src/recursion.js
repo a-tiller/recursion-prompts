@@ -700,4 +700,23 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
+
+//	if (obj[key] === Object(obj[key]) && !(Array.isArray(obj[key])))
+
+if (input === Object(input) && !(Array.isArray(input))) {
+	// object case
+	let result = {};
+	for (let key in input) {
+		result[key] = clone(input[key]);
+	}
+	return result;
+} else if (Array.isArray(input)) {
+	// array case
+	let result = [];
+	input.forEach(function(element){result.push(clone(element));});
+	return result;
+} else {
+	return input;
+}
+
 };
