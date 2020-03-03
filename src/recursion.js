@@ -658,6 +658,27 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
+	let count = 0;
+
+	if (node === undefined) {
+		count = tagCount(tag, document.body)
+	} else {
+		if (node.tagName === tag.toUpperCase()){
+			count++;
+		}
+
+		if (node.hasChildNodes) {
+			let child_nodes = node.childNodes;
+
+			child_nodes.forEach(function(element){
+				if (element instanceof Element){
+					count += tagCount(tag, element);
+				}
+			});
+		}
+	}
+
+	return count;
 };
 
 // 38. Write a function for binary search.
