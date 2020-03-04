@@ -686,6 +686,36 @@ var tagCount = function(tag, node) {
 // binarySearch(array, 5) // 5
 // https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search
 var binarySearch = function(array, target, min, max) {
+	if (min === undefined) {
+		min = 0;
+	}
+
+	if (max === undefined) {
+		max = array.length - 1;
+	}
+
+	let mid = Math.floor((min + max) / 2);
+
+	if (array[mid] === target) {
+		return mid;
+	} else if (array[mid] < target) {
+		if (mid >= max) {
+			return null;
+		} else {
+			let moreSearch = binarySearch(array.slice(mid + 1), target, /*mid + 1, max*/);
+			if (moreSearch === null) {
+				return null;
+			} else {
+				return mid + 1 + moreSearch;
+			}
+		}
+	} else if (array[mid] > target) {
+		if (mid <= min) {
+			return null;
+		} else {
+			return binarySearch(array.slice(0, mid), target, /*min, mid - 1*/);
+		}
+	}
 };
 
 // 39. Write a merge sort function.
@@ -700,8 +730,6 @@ var mergeSort = function(array) {
 // console.log(obj2); // {a:1,b:{bb:{bbb:2}},c:3}
 // obj1 === obj2 // false
 var clone = function(input) {
-
-//	if (obj[key] === Object(obj[key]) && !(Array.isArray(obj[key])))
 
 if (input === Object(input) && !(Array.isArray(input))) {
 	// object case
