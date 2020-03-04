@@ -722,6 +722,32 @@ var binarySearch = function(array, target, min, max) {
 // mergeSort([34,7,23,32,5,62]) // [5,7,23,32,34,62]
 // https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms
 var mergeSort = function(array) {
+	let result = [];
+
+	let mid = Math.floor((array.length - 1) / 2);
+
+	let lower = array.slice(0, mid + 1);
+	let upper = array.slice (mid + 1);
+
+	if (lower.length > 1) {
+		lower = mergeSort(lower);
+	}
+
+	if (upper.length > 1) {
+		upper = mergeSort(upper);
+	}
+
+	while (upper.length > 0 || lower.length > 0){
+		if (lower.length === 0 || upper[0] < lower[0]) {
+			result.push(upper[0]);
+			upper.shift();
+		} else {
+			result.push(lower[0]);
+			lower.shift();
+		}
+	}
+
+	return result;
 };
 
 // 40. Deeply clone objects and arrays.
